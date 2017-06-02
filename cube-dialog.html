@@ -62,7 +62,16 @@
                  {
                    this._dlg.refit();
                  }
-               }
+               },
+
+        query:    function (selector)
+                  {
+                    return this.$.dialog.querySelector(selector);
+                  },
+        queryAll: function (selector)
+                  {
+                    return this.$.dialog.querySelectorAll(selector);
+                  }
       });
   </script>
 </dom-module>
