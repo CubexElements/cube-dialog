@@ -1,0 +1,55 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+
+<dom-module id="cube-dialog" attributes="modal with-backdrop">
+  <template>
+    <paper-dialog id="dialog" with-backdrop="[[withBackdrop]]" modal="[[modal]]"></paper-dialog>
+
+    <div id="helper" style="display:none">
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    Polymer(
+      {
+        is:         'cube-dialog',
+        properties: {
+          modal:        {type: Boolean},
+          withBackdrop: {type: Boolean}
+        },
+
+        attached: function ()
+                  {
+                    this._nodeObserver = Polymer.dom(this.$.helper).observeNodes(
+                      function (mutations)
+                      {
+                        for(var i = 0; i < mutations.addedNodes.length; i++)
+                        {
+                          this.$.dialog.appendChild(mutations.addedNodes[i]);
+                        }
+                      }.bind(this));
+                  },
+
+        open: function ()
+              {
+                if(!this._dlg)
+                {
+                  this._dlg = this.root.querySelector('#dialog');
+                  this._dlg.addEventListener('cube-dialog-close', function () {this._dlg.close()}.bind(this));
+                  document.body.appendChild(this._dlg);
+                }
+
+                this._dlg.open();
+              },
+
+        refit: function ()
+               {
+                 if(this._dlg)
+                 {
+                   this._dlg.refit();
+                 }
+               }
+      });
+  </script>
+</dom-module>
