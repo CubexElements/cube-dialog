@@ -3,9 +3,14 @@
 
 <dom-module id="cube-dialog" attributes="modal with-backdrop">
   <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
     <paper-dialog id="dialog" with-backdrop="[[withBackdrop]]" modal="[[modal]]"></paper-dialog>
 
-    <div id="helper" style="display:none">
+    <div id="helper">
       <slot></slot>
     </div>
   </template>
