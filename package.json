@@ -1,0 +1,11 @@
+{
+  "name": "@kubex/cube-dialog",
+  "flat": true,
+  "version": "3.0.0-pre.1",
+  "main": "cube-dialog.html",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "@polymer/paper-dialog": "^3.0.0-pre.1"
+  },
+  "devDependencies": {}
+}
